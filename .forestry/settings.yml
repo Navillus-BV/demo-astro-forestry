@@ -9,6 +9,8 @@ sections:
   label: Authors
   create: documents
   match: "*"
+  templates:
+  - author
 - type: directory
   path: src/pages/post
   label: Posts
