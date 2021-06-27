@@ -1,4 +1,5 @@
 ---
-name: "Don Quixote"
-image: "/uploads/don.jpg"
+name: Don Quixote
+image: /uploads/don.jpg
+slug: don
 ---

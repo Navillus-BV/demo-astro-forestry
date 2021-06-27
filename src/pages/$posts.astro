@@ -9,8 +9,13 @@ let title = 'Don’s Blog';
 let description = 'An example blog on Astro';
 let canonicalURL = Astro.request.canonicalURL;
 
-// collection
-import authorData from '../data/authors.json';
+// collectionlet allAuthors = Astro.fetchContent('../data/authors/*.md');
+let authorData = allAuthors.reduce((acc, next) => {
+  return {
+    ...acc,
+    [`src/data/authors/${next.slug}.md`]: next
+  }
+}, {});
 let { collection } = Astro.props;
 export async function createCollection() {
   return {
