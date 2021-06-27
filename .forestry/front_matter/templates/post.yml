@@ -4,22 +4,22 @@ hide_body: false
 fields:
 - type: text
   name: layout
-  label: layout
+  label: Layout
   hidden: true
   config:
     required: true
   default: "../../layouts/post.astro"
 - type: text
   name: title
-  label: title
+  label: Title
   config:
     required: true
 - type: text
   name: tag
-  label: tag
+  label: Tag
 - type: datetime
   name: date
-  label: date
+  label: Date
   config:
     display_utc: false
     date_format: ''
@@ -28,7 +28,7 @@ fields:
   default: now
 - type: file
   name: image
-  label: image
+  label: Image
 - name: author
   type: select
   default: []
@@ -43,6 +43,6 @@ fields:
   label: Author
 - type: text
   name: description
-  label: description
+  label: Description
   config:
     required: true
