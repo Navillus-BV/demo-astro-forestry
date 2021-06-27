@@ -1,0 +1,24 @@
+---
+label: Author
+hide_body: true
+fields:
+- type: field_group
+  name: don
+  label: don
+  fields:
+  - type: text
+    name: name
+    label: name
+  - type: file
+    name: image
+    label: image
+- type: field_group
+  name: sancho
+  label: sancho
+  fields:
+  - type: text
+    name: name
+    label: name
+  - type: file
+    name: image
+    label: image
