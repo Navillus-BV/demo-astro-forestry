@@ -5,15 +5,27 @@ fields:
 - type: text
   name: layout
   label: layout
+  hidden: true
+  config:
+    required: true
+  default: "../../layouts/post.astro"
 - type: text
   name: title
   label: title
+  config:
+    required: true
 - type: text
   name: tag
   label: tag
 - type: datetime
   name: date
   label: date
+  config:
+    display_utc: false
+    date_format: ''
+    export_format: YYYY-MM-DD
+    required: true
+  default: now
 - type: file
   name: image
   label: image
@@ -32,3 +44,5 @@ fields:
 - type: text
   name: description
   label: description
+  config:
+    required: true
