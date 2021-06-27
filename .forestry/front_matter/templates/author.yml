@@ -5,9 +5,9 @@ display_field: name
 fields:
 - type: text
   name: name
-  label: name
+  label: Name
   config:
     required: true
 - type: file
   name: image
-  label: image
+  label: Image
