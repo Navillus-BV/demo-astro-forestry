@@ -3,7 +3,7 @@ layout: ../../layouts/post.astro
 title: Chapter III
 tag: movie
 date: 2021-05-19
-image: /images/chapter-03.jpg
+image: /uploads/chapter-03.jpg
 author: don
 description: Wheren is Related the Droll Way in which Don Quixote Had Himself Dubbed a Knight
 ---

@@ -3,7 +3,7 @@ layout: ../../layouts/post.astro
 title: Chapter II
 tag: movie
 date: 2021-05-18
-image: /images/chapter-02.jpg
+image: /uploads/chapter-02.jpg
 author: sancho
 description: Which Treats of the First Sally the Ingenious Don Quixote Made From Home
 ---
