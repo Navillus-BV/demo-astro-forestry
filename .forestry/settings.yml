@@ -29,4 +29,4 @@ build:
   preview_docker_image: node:14
   mount_path: "/srv"
   working_dir: "/srv"
-  instant_preview_command: npm start
+  instant_preview_command: npm run start
