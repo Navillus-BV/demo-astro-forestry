@@ -26,7 +26,7 @@ file_template: ":filename:"
 build:
   preview_output_directory: dist
   install_dependencies_command: npm install
-  preview_docker_image: node:latest
+  preview_docker_image: node:14
   mount_path: "/srv"
   working_dir: "/srv"
   instant_preview_command: npm start
