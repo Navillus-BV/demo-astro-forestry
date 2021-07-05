@@ -28,4 +28,5 @@ build:
   install_dependencies_command: npm install
   preview_docker_image: node:latest
   mount_path: "/srv"
+  working_dir: "/srv"
   instant_preview_command: npm start
