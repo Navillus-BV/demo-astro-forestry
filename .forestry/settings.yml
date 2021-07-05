@@ -26,7 +26,7 @@ file_template: ":filename:"
 build:
   preview_output_directory: dist
   install_dependencies_command: npm install
-  preview_docker_image: forestryio/node:12
-  mount_path: "/srv"
+  preview_docker_image: node:latest
+  mount_path: "/"
   working_dir: "/srv"
   instant_preview_command: npm start
