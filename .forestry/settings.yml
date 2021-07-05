@@ -27,6 +27,5 @@ build:
   preview_output_directory: dist
   install_dependencies_command: npm install
   preview_docker_image: node:latest
-  mount_path: "/"
-  working_dir: "/srv"
+  mount_path: "/srv"
   instant_preview_command: npm start
