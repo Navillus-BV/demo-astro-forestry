@@ -8,13 +8,6 @@ sections:
   path: src/data/authors.json
   label: Authors Data
 - type: directory
-  path: src/data/authors
-  label: Authors
-  create: documents
-  match: "*"
-  templates:
-  - author
-- type: directory
   path: src/pages/post
   label: Posts
   create: documents
