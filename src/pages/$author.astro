@@ -3,44 +3,46 @@ import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import PostPreview from '../components/PostPreview.astro';
 import Pagination from '../components/Pagination.astro';
+import authorsData from '../data/authors.json';
 
 // page
 let title = 'Don’s Blog';
 let description = 'An example blog on Astro';
 let canonicalURL = Astro.request.canonicalURL;
 
-// collection
-let allAuthors = Astro.fetchContent('../data/authors/*.md');
-let authorData = allAuthors.reduce((acc, next) => {
-  return {
-    ...acc,
-    [`src/data/authors/${next.slug}.md`]: next
-  }
-}, {});
-
-let { collection } = Astro.props;
 export async function createCollection() {
-  /** Load posts */
-  let allPosts = Astro.fetchContent('./post/*.md');
-
-  /** Loop through all posts, gather all authors */
-  let routes = [];
-  routes = allAuthors;
+  const allPosts = Astro.fetchContent('./post/*.md')
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
 
   return {
-    /** Sort posts newest -> oldest, filter by params.author */
-    async data({ params }) {
-      allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-      return allPosts.filter((post) => post.author === `src/data/authors/${params.slug}.md`);
+    // Set "paginate" to true to enable pagination.
+    paginate: true,
+
+    // `route` defines the URL structure for your collection.
+    route: '/author/:slug/:page?',
+
+    // `paths` tells Astro which pages to generate in your collection.
+    paths() {
+      return Object.keys(authorsData)
+        .map((slug) => ({ params: { slug } }))
     },
-    /** Set page size */
-    pageSize: 3,
-    /** Set permalink URL */
-    permalink: ({ params }) => `/author/${params.slug}`,
-    /** Pass back all routes so Astro can generate the static build */
-    routes,
-  };
+
+    // `props` returns the data needed on each page.
+    props({ params, paginate }) {
+      const { slug } = params
+      const author = authorsData[slug]
+      const posts = allPosts.filter((post) => post.author === slug)
+
+      return {
+        author,
+        slug,
+        posts: paginate(posts, { pageSize: 3 })
+      }
+    }
+  }
 }
+
+const { slug, author, posts } = Astro.props
 ---
 
 <html>
@@ -49,10 +51,9 @@ export async function createCollection() {
     <MainHead
       title={title}
       description={description}
-      image={collection.data[0].image}
       canonicalURL={canonicalURL}
-      prev={collection.url.prev}
-      next={collection.url.next}
+      prev={posts.url.prev}
+      next={posts.url.next}
     />
 
     <style lang="scss">
@@ -94,15 +95,15 @@ export async function createCollection() {
 
     <main class="wrapper">
       <h2 class="title">
-        <div class="avatar"><img class="avatar-img" src={collection.params.image} alt=""}></div>
-        {collection.params.name}
+        <div class="avatar"><img class="avatar-img" src={author.image} alt=""}></div>
+        {author.name}
       </h2>
-      <small class="count">{collection.start + 1}–{collection.end + 1} of {collection.total}</small>
-      {collection.data.map((post) => <PostPreview post={post} author={collection.params} />)}
+      <small class="count">{posts.start + 1}–{posts.end + 1} of {posts.total}</small>
+      {posts.data.map((post) => <PostPreview post={post} author={author} />)}
     </main>
 
     <footer>
-      <Pagination prevUrl={collection.url.prev} nextUrl={collection.url.next} />
+      <Pagination prevUrl={posts.url.prev} nextUrl={posts.url.next} />
     </footer>
   </body>
 </html>
