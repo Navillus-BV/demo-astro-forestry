@@ -1,6 +1,6 @@
 ---
 layout: "../../layouts/post.astro"
-title: Chapter I (DRAFT)
+title: Chapter I
 tag: movie
 date: 2021-05-17
 image: "/uploads/chapter-01.jpg"
